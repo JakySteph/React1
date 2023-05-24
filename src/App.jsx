@@ -1,34 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useRef } from 'react'
 import './App.css'
+import Music from '/Music/3.mp3';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const audioRef = useRef(null);
+
+  const handlePlayAudio = () => {
+    audioRef.current.play();
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
       <h1>Oliwia Maruszak-Zawodnik</h1>
       <h2>Nr.Albumu: 113783</h2>
+      <div>
+        <img src="/image/1.jpg" alt=""/>
+      </div>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <p>
+        <button onClick={handlePlayAudio}>Music</button>
+      </p>
+      <audio ref={audioRef}>
+          <source src={Music} type="audio/mp3" />
+      </audio>
+      <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      
     </>
   )
 }
